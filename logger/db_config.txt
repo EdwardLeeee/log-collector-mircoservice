@@ -1,0 +1,5 @@
+[DEFAULT]
+user=oraclelee
+password=0000
+host=localhost
+database=logger

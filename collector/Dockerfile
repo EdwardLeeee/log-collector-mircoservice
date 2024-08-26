@@ -1,0 +1,20 @@
+# 使用官方 Python 3.9 Alpine 作為基礎映像，這是一個較小的映像
+FROM python:3.10
+
+# 設定工作目錄
+WORKDIR /app
+
+# 複製應用程式代碼到容器內
+COPY . .
+
+# 安裝 Flask 和 requests 依賴
+# 這裡合併了安裝和清理步驟，以減少層數
+RUN pip install --no-cache-dir Flask==3.0.3 requests==2.25.1 && \
+    # 清理不必要的檔案和緩存
+    rm -rf /root/.cache
+
+# 開放端口
+EXPOSE 5050
+
+# 設定容器啟動時執行的命令
+CMD python3 collector.py
