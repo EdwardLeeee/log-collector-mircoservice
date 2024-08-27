@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: Logger API
+  version: 1.0.0
+  description: API documentation for the Logger Service
+
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+
+paths:
+  /save-log:
+    post:
+      summary: Add a log entry
+      description: The /save-log route in your Flask application handles POST requests to save log data.
+      requestBody:
+        description: Log entry data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                HOST_NAME:
+                  type: string
+                  example: "Server1"
+                HOST_IP:
+                  type: string
+                  example: "192.168.1.1"
+                SYSTEM_TYPE:
+                  type: string
+                  example: "Linux"
+                LEVEL:
+                  type: string
+                  enum: ["INFO", "WARN", "DEBUG", "ERRO"]
+                  example: "INFO"
+                PROCESS_NAME:
+                  type: string
+                  example: "nginx"
+                CONTENT:
+                  type: string
+                  example: "Service started successfully"
+                LOG_TIME:
+                  type: string
+                  format: date-time
+                  example: "2024-08-25T08:31:01"
+      responses:
+        '201':
+          description: Log entry added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Log entry added successfully"
+                  status:
+                    type: string
+                    example: "success"
+        '400':
+          description: Data missing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  message:
+                    type: string
+                    example: "collector missing field [CONTENT , LOG_TIME]"
+
+        '402':
+          description: Data format wrong
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  message:
+                    type: string
+                    example: "illegal data [CONTENT 超過 512 個字符]"
+        '502':
+          description: Database connection failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  message:
+                    type: string
+                    example: "Database connection error"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  message:
+                    type: string
+                    example: "Internal server error"
+
+
+  /search:
+    get:
+      summary: Search log entries
+      parameters:
+        - in: query
+          name: host_name
+          schema:
+            type: string
+          description: Host name to filter logs
+        - in: query
+          name: host_ip
+          schema:
+            type: string
+          description: Host IP to filter logs
+        - in: query
+          name: system_type
+          schema:
+            type: string
+          description: System type to filter logs
+        - in: query
+          name: level
+          schema:
+            type: array
+            items:
+              type: string
+              enum: ["INFO", "WARN", "DEBUG", "ERRO"]
+          description: Log level to filter logs
+        - in: query
+          name: log_time_start
+          schema:
+            type: string
+            format: date-time
+          description: Start time for log filtering
+        - in: query
+          name: log_time_end
+          schema:
+            type: string
+            format: date-time
+          description: End time for log filtering
+      responses:
+        '200':
+          description: Log search successful, the results matching the search criteria will be returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ID:
+                      type: integer
+                      example: 10
+                    HOST_NAME:
+                      type: string
+                      example: "server1"
+                    HOST_IP:
+                      type: string
+                      example: "192.168.1.2"
+                    SYSTEM_TYPE:
+                      type: string
+                      example: "Linux"
+                    LEVEL:
+                      type: string
+                      example: "INFO"
+                    PROCESS_NAME:
+                      type: string
+                      example: "test"
+                    CONTENT:
+                      type: string
+                      example: "Log entry 1"
+                    LOG_TIME:
+                      type: string
+                      format: date-time
+                      example: "2024-08-27T14:00:00Z"
+                    TIMESTAMP:
+                      type: string
+                      format: date-time
+                      example: "2024-08-27T14:00:00Z"
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  message:
+                    type: string
+                    example: "Internal server error"

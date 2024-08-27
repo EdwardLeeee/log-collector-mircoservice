@@ -40,6 +40,7 @@ class APIManager:
     def load_api_token(self):
         print("Loading API token...")
         api_token_data = self.get_api_token()
+        print(api_token_data)
         return api_token_data
 
     def get_api_token(self):
@@ -191,8 +192,8 @@ class LogHandler(FileSystemEventHandler):  # 繼承FileSystemEventHandler
             sys.exit(1)  # 中止程式，傳回碼 1 表示異常退出
 
 def main():
-    config_file = '/home/oraclelee/Desktop/collector/config/config.cfg'
-    offsets_file =f'/home/oraclelee/Desktop/collector/config/offsets{date.today()}.json'
+    config_file = '/home/oraclelee/Desktop/log-collector-microservice/config/config.cfg'
+    offsets_file =f'/home/oraclelee/Desktop/log-collector-microservice/config/offsets{date.today()}.json'
     collector_url = 'http://localhost:5050'  # 將URL變成參數
 
     config_loader = ConfigLoader(config_file, offsets_file)
