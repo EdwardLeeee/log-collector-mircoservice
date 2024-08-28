@@ -15,7 +15,7 @@
 
 - 請在 `/container/container` 下執行 `podman build -t container .`
 
-- `podman pull mysql8.0`
+- `podman pull mysql:8.0`
 
 #### 建立container
 請注意，我們建議您建立一資料夾用來存放 mysql-db 的資料，此資料夾絕對路徑即為下文中的 `<absolute path to data>`

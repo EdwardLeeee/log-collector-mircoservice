@@ -15,7 +15,7 @@ Please use the following commands to build and run the container:
 #### Build Image
 - Execute `podman build -t logger .` in the `/container/logger` directory.
 - Execute `podman build -t container .` in the `/container/container` directory.
-- `podman pull mysql8.0`
+- `podman pull mysql:8.0`
 
 #### Create Containers
 Please note, it is recommended to create a folder to store the mysql-db data. The absolute path of this folder is represented as `<absolute path to data>` in the commands below:
