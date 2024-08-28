@@ -1,4 +1,3 @@
-<h1 align="center">Project Intruduction/[專案介紹]()</h1>
 ## 整體架構圖 (Overall Architecture Diagram)
 ![image](https://github.com/user-attachments/assets/37b8870d-2032-4425-b081-73c35eaa1a93)
 
