@@ -47,7 +47,13 @@ pip install pyyaml
 #### 執行程式
 
 在執行程式前需自行至程式 main function 中，修改 config.cfg 及 offest.json 之位置，以及 collector 的 URL。
-![image](https://github.com/user-attachments/assets/5f060168-8012-41cc-8e8f-780064aa2231)
+```python3
+def main():
+    config_file = '<path to config.cfg>'
+    offsets_file ='<path to offset.json>'
+    # ex. offsets_file =f'/home/oraclelee/Desktop/log-collector-microservice/config/offsets{date.today()}.json'
+    collector_url = '<collector URL>'  # 將URL變成參數
+```
 
 修改後在執行以下指令：
 
