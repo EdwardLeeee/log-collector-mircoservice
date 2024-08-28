@@ -29,6 +29,35 @@ podman run -d --pod log-collector-service --name mysql-db
               -v <absolute path to data>:/var/lib/mysql 
               mysql:8.0
 ```
+
+#### 建立 database
+1. `podman exec -it mysql-db bash`
+2. `mysql -h 127.0.0.1 -u root -p`
+3. 輸入建立 container 時設定之 MYSQL_ROOT_PASSWORD
+4. 輸入以下命令建立 logger 連接之帳號
+（請注意，此處之帳號密碼需與 logger image 中帶入的環境變數一致，以下為預設之帳密）
+  ```
+  CREATE USER 'oraclelee'@'%' IDENTIFIED BY '0000';
+  GRANT ALL PRIVILEGES ON logger.* TO 'oraclelee'@'%';
+  ```
+5. 輸入以下命令創建 database 與 table
+   （請注意，此處之 database 與 table 名稱需與 logger image 中帶入的環境變數一致，以下為預設之名稱）
+```
+CREATE DATABASE IF NOT EXISTS logger;
+USE logger;
+CREATE TABLE IF NOT EXISTS log_data (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    HOST_NAME VARCHAR(32),
+    HOST_IP VARCHAR(15),
+    SYSTEM_TYPE VARCHAR(20),
+    LEVEL VARCHAR(6),
+    PROCESS_NAME VARCHAR(64),
+    CONTENT VARCHAR(512),
+    LOG_TIME DATETIME,
+    TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+
 ## processor
 
 `proccessor.py` 是一個負責傳送客戶端各種 process 所產生的不同格式之 log 給資料庫的程式。
