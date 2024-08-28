@@ -85,7 +85,7 @@ def main():
 
 修改後在執行以下指令：
 
-`python3 processor`
+`python3 processor.py`
 
 
 ## API 說明文件 UI
