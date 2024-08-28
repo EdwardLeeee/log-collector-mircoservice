@@ -23,9 +23,9 @@
 podman pod create --name log-collector-microservice -p 5050:5050 -p 5000:5000
 podman run -d --pod log-collector-service --name collector collector:latest
 podman run -d --pod log-collector-service --name logger logger:latest
-podman run -d --pod log-collector-service --name mysql-db 
-              -e MYSQL_ROOT_PASSWORD=<your-password> 
-              -v <absolute path to data>:/var/lib/mysql 
+podman run -d --pod log-collector-service --name mysql-db
+              -e MYSQL_ROOT_PASSWORD=<your-password>
+              -v <absolute path to data>:/var/lib/mysql
               mysql:8.0
 ```
 
@@ -91,16 +91,16 @@ def main():
 ## API 說明文件 UI
 collector swagger
 ```
-podman run -d --name collector_swagger -p 8080:8080 
-                -e SWAGGER_JSON=/foo/openapi.yaml 
-                -v <absolute path to collector_openapi.yaml>:/foo/openapi.yaml 
+podman run -d --name collector_swagger -p 8080:8080
+                -e SWAGGER_JSON=/foo/openapi.yaml
+                -v <absolute path to collector_openapi.yaml>:/foo/openapi.yaml
                 swaggerapi/swagger-ui
 ```
-logger swagger 
+logger swagger
 ```
-podman run -d --name logger_swagger -p 8081:8080 
-                -e SWAGGER_JSON=/foo/openapi.yaml 
-                -v <absolute path to logger_openapi.yaml>:/foo/openapi.yaml 
+podman run -d --name logger_swagger -p 8081:8080
+                -e SWAGGER_JSON=/foo/openapi.yaml
+                -v <absolute path to logger_openapi.yaml>:/foo/openapi.yaml
                 swaggerapi/swagger-ui
 ```
 #### 查閱 Web UI
