@@ -109,7 +109,7 @@ podman run -d --name logger_swagger -p 8081:8080 \
 - Logger API documentation: `http://localhost:8081`
 
 ## Automated testing
-The test_auto_logger.py file, situated within the logger directory, is specifically designed for automated testing of the logging module. After installing the pytest framework using pip install pytest, you can run the tests directly by executing pytest test_auto_logger.py.
+The `test_auto_logger.py` file, situated within the logger directory, is specifically designed for automated testing of the logging module. After installing the pytest framework using `pip install pytest`, you can run the tests directly by executing `pytest test_auto_logger.py`.
 
 ## Detailed Description
-For more comprehensive project desciption, please refer to https://hackmd.io/@OliverLin12/r1eEp6cs0
+For more comprehensive project desciption, please refer to [this hackmd document](https://hackmd.io/@OliverLin12/r1eEp6cs0).
