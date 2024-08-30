@@ -1,2 +1,9 @@
 data/*.json
 container/mysql-db
+
+container/logger/db_config.txt
+container/collector/__pycache__
+container/logger/__pycache__
+container/collector/.pytest_cache
+container/logger/.pytest_cache
+container/collector/test*.py

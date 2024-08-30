@@ -44,7 +44,7 @@ whitelist_ips = data['ips']# 獲取 IP 白名單
 API_TOKENS = {}# 允許的 API 金鑰列表和對應的到期日期
 # 壓測用
 API_TOKENS["202408testing"] = datetime.now() + timedelta(hours=TOKEN_EXPIRATION_HOURS)
-#
+
 @app.route('/verify-whitelist', methods=['GET'])
 def verify_and_generate_token():
     client_ip = request.remote_addr
