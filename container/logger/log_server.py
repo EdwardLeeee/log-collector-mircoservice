@@ -186,10 +186,10 @@ def log():
 if __name__ == '__main__':
     #生產環境要把debug拿掉，host 0000表示接受所有的ip
     #thread表示多線程
-    app.run(host='0.0.0.0', port=5000,threaded=True)
+    app.run(host='0.0.0.0', port=5000, threaded=True)
     ##GET成功200
     ##POST成功201
     ##data格式缺失 400
     ##data格式錯誤 402
-    ##連接失敗500
+    ##連接失敗502
     ##非連接問題失敗(sql or python 寫錯了)500

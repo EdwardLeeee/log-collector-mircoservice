@@ -1,5 +1,5 @@
-[DEFAULT]
-user=oraclelee
-password=0000
+[DEFAULT]  
+user=oliver
+password=Abcd1234
 host=localhost
-database=logger
+database=logdb 
